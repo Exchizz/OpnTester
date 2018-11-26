@@ -6,5 +6,6 @@ COPY OPN-takehome.postman_collection.json /
 RUN chmod +x /test.sh
 
 
+# Might need parameters to test.sh at some point
 ENTRYPOINT ["/test.sh"]
 CMD []
