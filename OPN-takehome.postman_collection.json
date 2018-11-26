@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "d08cbd38-b82b-46c7-b7e5-da535870a7e3",
+		"name": "OPN-takehome",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "InsertPerson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb70b859-bf8e-4ac9-8603-b11099a566f3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstname",
+							"value": "AAAAAAAAAAAAAAAAAAAAAA",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "BBBBBBBBBBBBBBBBBBBBB",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/insertPerson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"insertPerson"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectPersons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a29ac5f-b9fc-4ab0-bd47-4f8f87813254",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check selectPersons\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"Test inserted values\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var lastElm = jsonData.length;",
+							"    pm.expect(jsonData[lastElm-1].Firstname).to.eql(\"AAAAAAAAAAAAAAAAAAAAAA\");",
+							"    pm.expect(jsonData[lastElm-1].Lastname).to.eql(\"BBBBBBBBBBBBBBBBBBBBB\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/getPersons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"getPersons"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
