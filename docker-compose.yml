@@ -1,0 +1,5 @@
+version: '2'
+services:
+  testItUp:
+    image: mneerup/opntester
+    network_mode: "host"
